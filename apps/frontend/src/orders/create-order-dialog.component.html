@@ -1,0 +1,93 @@
+<style>
+  .error-message {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+
+  mat-form-field {
+    margin: 10px;
+    width: 100%;
+  }
+
+
+  @media (min-width: 600px) {
+    form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 0;
+    }
+
+    mat-form-field {
+      margin: 0;
+    }
+  }
+
+  @media (max-width: 599px) {
+    form {
+      display: block;
+      margin: 0;
+    }
+
+    mat-form-field {
+      margin: 10px 0;
+    }
+  }
+</style>
+<h2 mat-dialog-title>Add new order</h2>
+<mat-dialog-content>
+  <div *ngIf="backendError" class="error-message">
+    <mat-error>{{ backendError }}</mat-error>
+  </div>
+  <form [formGroup]="orderForm">
+    <mat-form-field>
+      <mat-label>Order Number</mat-label>
+      <input matInput formControlName="orderNumber" type="number" required>
+      <mat-error *ngIf="orderForm.get('orderNumber')?.invalid && orderForm.get('orderNumber')?.touched">
+        Please enter a valid order number (only digits allowed).
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Payment Description</mat-label>
+      <input matInput formControlName="paymentDescription" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Street Address</mat-label>
+      <input matInput formControlName="streetAddress" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Town</mat-label>
+      <input matInput formControlName="town" required>
+    </mat-form-field>
+
+    <mat-form-field hintLabel="In English">
+      <mat-label>Country</mat-label>
+      <input matInput formControlName="country" required>
+    </mat-form-field>
+
+    <mat-form-field hintLabel="Amount in cents">
+      <mat-label>Amount in Cents</mat-label>
+      <input matInput formControlName="amountInCents" type="number" required>
+    </mat-form-field>
+
+    <mat-form-field hintLabel="In ISO 4217 3 letter format">
+      <mat-label>Currency</mat-label>
+      <input matInput formControlName="currency" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Payment Due Date</mat-label>
+      <input matInput formControlName="paymentDueDate" [matDatepicker]="picker" required>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+  <button mat-button (click)="saveOrder()">Save</button>
+</mat-dialog-actions>

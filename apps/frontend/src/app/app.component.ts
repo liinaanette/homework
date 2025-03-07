@@ -1,9 +1,16 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NxWelcomeComponent } from './nx-welcome.component';
+import { OrderListComponent } from '../orders/order-list.component';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @Component({
-  imports: [NxWelcomeComponent, RouterModule],
+  imports: [
+    RouterModule,
+    OrderListComponent,
+    MatDatepickerModule,
+    MatNativeDateModule,
+  ],
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
