@@ -58,7 +58,11 @@ export class OrderListComponent implements OnInit {
   displayedColumns: string[] = [
     'orderNumber',
     'paymentDescription',
+    'streetAddress',
+    'town',
     'country',
+    'amountInCents',
+    'currency',
     'paymentDueDate',
   ];
   responses: Order[] = [];

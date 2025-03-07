@@ -9,6 +9,8 @@ export class Order {
   @Column()
   paymentDescription: string;
   @Column()
+  streetAddress: string;
+  @Column()
   town: string;
   @Column()
   country: string;
